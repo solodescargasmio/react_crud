@@ -23,7 +23,7 @@ const UserTable = (props) => {
                             <td> {user.username} </td>
                             <td> 
                                 <button className='button muted-button'
-                                onClick={() => {props.setEditing(true)}}>Edit</button> 
+                                onClick={() => {props.editRow(user)}}>Edit</button> 
                                 <button className='button muted-button'
                                 onClick={() => {props.deleteUser(user.id)}}>Delete</button> 
                             </td>

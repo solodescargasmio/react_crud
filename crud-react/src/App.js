@@ -38,6 +38,18 @@ function App() {
     id:null, name:'', username:''
   });
 
+  const editRow = (user) => {
+    setEditing(true);
+    setCurrentUser({
+      id: user.id, name:user.name, username:user.username
+    })
+  } 
+
+  const updateUser = (id, updateUser) => {
+    setEditing(false);
+    setUsers(users.map(user => (user.id === id ? updateUser : user)))
+  }
+
   return (
     <div className="container">
        <h1>CRUD App con Hooks</h1> 
@@ -46,7 +58,8 @@ function App() {
           {
             editing ? (
                 <div><h2>Edit user</h2>
-                <EditUserForm />
+                <EditUserForm currentUser={currentUser}
+                               updateUser={updateUser} />
               
             </div>
             ) : (
@@ -62,7 +75,11 @@ function App() {
         </div>
         <div className="flex-large">
           <h2>View users</h2>
-          <UserTable users = {users} deleteUser={deleteUser} setEditing={setEditing}/>
+          <UserTable 
+            users = {users} 
+            deleteUser={deleteUser} 
+            editRow={editRow}
+            />
         </div>
        </div>
     </div>
